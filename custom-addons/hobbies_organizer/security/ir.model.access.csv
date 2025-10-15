@@ -1,9 +1,3 @@
-# access rules need the following information:
-# id, name used as identifiers
-# model_id:id, it's the name of the model, given like: model_"module"_"model"
-# group_id:id, the group given permissions, e.g. base.group_user includes all logged in users
-# perm_"read/write/create/unlink", permission for reading, modifying, creating and deleting a record
-
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 access_h_o_hobby_user,access_hobby_user,model_hobbies_organizer_hobby,base.group_user,1,1,1,1

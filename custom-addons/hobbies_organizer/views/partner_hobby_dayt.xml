@@ -112,11 +112,11 @@
             <!-- state allows us to define different server actions, in this case, execute python code -->
             <field name="state">code</field>
             <!-- the python code definition itself -->
+            <!-- we first recompute all partner_hobby_dayt's start/stop_datetime entries (not very efficient)
+            then, we execute the action window that opens the calendar, passing the current context to it -->
             <field name="code">
-<!-- we first recompute all partner_hobby_dayt's start/stop_datetime entries (not very efficient) -->
 env['hobbies_organizer.partner_hobby_dayt'].search([])._compute_start_stop_datetime()
 
-<!-- we then execute the action window that opens the calendar, passing the current context to it -->
 action = env.ref('hobbies_organizer.act_window_partner_hobby_dayt').read()[0]
 action["context"] = env.context
 
