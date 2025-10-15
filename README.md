@@ -46,4 +46,4 @@ Within the root folder using bash:
 - To initialize the Odoo database in Postgres and install the Hobbies Organizer module:
   - ```sudo docker compose exec web odoo -d hobbies_db -i hobbies_organizer --with-demo --stop-after-init``` to initialize the database **with** demo data
   - ```sudo docker compose exec web odoo -d hobbies_db -i hobbies_organizer --stop-after-init``` to initialize the database **without** demo data
-- Enter **localhost:8069** to use the Odoo web client
+- Enter **localhost:8069** to use the Odoo web client. Default user credentials are admin, admin
