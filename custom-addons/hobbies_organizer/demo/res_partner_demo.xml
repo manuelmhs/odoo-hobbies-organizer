@@ -1,0 +1,56 @@
+<!-- res.partner -->
+<odoo>
+    <data>
+        <!-- John Doe sample partner -->
+      <record id="partner_john_doe" model="res.partner">
+          <field name="name">John Doe</field>
+          <field name="street">123 Maple Street</field>
+          <field name="city">Springfield</field>
+          <field name="country_id" ref="base.us"/>
+          <field name="email">john.doe@example.com</field>
+          <field name="phone">+1 555 123 456</field>
+          <field name="in_hobbies_organizer">True</field>
+      </record>
+
+      <record id="partner_jane_smith" model="res.partner">
+          <field name="name">Jane Smith</field>
+          <field name="street">742 Evergreen Terrace</field>
+          <field name="city">Shelbyville</field>
+          <field name="country_id" ref="base.us"/>
+          <field name="email">jane.smith@example.com</field>
+          <field name="phone">+1 555 654 321</field>
+          <field name="in_hobbies_organizer">True</field>
+      </record>
+
+      <record id="partner_carlos_mendez" model="res.partner">
+          <field name="name">Carlos Mendez</field>
+          <field name="street">Av. del Sol 456</field>
+          <field name="city">Buenos Aires</field>
+          <field name="country_id" ref="base.ar"/>
+          <field name="email">carlos.mendez@example.com</field>
+          <field name="phone">+54 11 5555 7890</field>
+          <field name="in_hobbies_organizer">True</field>
+      </record>
+
+      <record id="partner_anna_keller" model="res.partner">
+          <field name="name">Anna Keller</field>
+          <field name="street">Hauptstrasse 12</field>
+          <field name="city">Berlin</field>
+          <field name="country_id" ref="base.de"/>
+          <field name="email">anna.keller@example.com</field>
+          <field name="phone">+49 30 555 333</field>
+          <field name="in_hobbies_organizer">True</field>
+      </record>
+
+      <record id="partner_li_wei" model="res.partner">
+          <field name="name">Li Wei</field>
+          <field name="street">88 Nanjing Road</field>
+          <field name="city">Shanghai</field>
+          <field name="country_id" ref="base.cn"/>
+          <field name="email">li.wei@example.com</field>
+          <field name="phone">+86 21 555 8888</field>
+          <field name="in_hobbies_organizer">True</field>
+      </record>
+
+    </data>
+</odoo>

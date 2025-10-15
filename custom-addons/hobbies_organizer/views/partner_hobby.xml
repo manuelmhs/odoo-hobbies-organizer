@@ -1,0 +1,119 @@
+<!-- partner_hobby views and actions -->
+<odoo>
+    <data>
+        <!-- partner_hobby form, used when adding a new hobby to a res.partner -->
+        <record id="hobbies_organizer.form_partner_hobby" model="ir.ui.view">
+            <field name="name">Partner Hobby Form</field>
+            <field name="model">hobbies_organizer.partner_hobby</field>
+            <field name="arch" type="xml">
+                <form string="Hobbies Form">
+                    <sheet>
+                        <group>
+                            <!-- partner_id is set by odoo depending on the current res.partner we are creating/modifying -->
+                            <field name="partner_id" invisible="1"/>
+                            <field name="hobby_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Schedule">
+                                <!-- we use one2many_list widget to view and create a schedule (partner_hobby_dayt entries). We specify the list view we need to open -->
+                                <field name="partner_hobby_dayt_ids" context="{'list_view_ref':'hobbies_organizer.list_partner_hobby_dayt_default'}" widget="one2many_list"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- partner_hobby default list view (used from res.partner) -->
+        <record id="hobbies_organizer.list_partner_hobby_default" model="ir.ui.view">
+            <field name="name">Partner Hobby List</field>
+            <field name="model">hobbies_organizer.partner_hobby</field>
+            <field name="arch" type="xml">
+                <list string="Hobbies List">
+                    <field name="hobby_id"/>
+                    <field name="schedule_summary"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- partner_hobby different list views, used for groupings or other purposes -->
+        <record id="hobbies_organizer.list_partner_hobby_group_hobby" model="ir.ui.view">
+            <field name="name">Partner Hobby List by Hobby</field>
+            <field name="model">hobbies_organizer.partner_hobby</field>
+            <field name="arch" type="xml">
+                <list string="Hobbies by Hobby" create="false" edit="false" delete="false">
+                    <field name="partner_id" string="Person"/>
+                    <field name="schedule_summary"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="hobbies_organizer.list_partner_hobby_group_person" model="ir.ui.view">
+            <field name="name">Partner Hobby List by Person</field>
+            <field name="model">hobbies_organizer.partner_hobby</field>
+            <field name="arch" type="xml">
+                <list string="Hobbies by Person" create="false" edit="false" delete="false">
+                    <field name="hobby_id"/>
+                    <field name="schedule_summary"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="hobbies_organizer.list_partner_hobby_group_category" model="ir.ui.view">
+            <field name="name">Partner Hobby List by Category</field>
+            <field name="model">hobbies_organizer.partner_hobby</field>
+            <field name="arch" type="xml">
+                <list string="Hobbies by Category" create="false" edit="false" delete="false">
+                    <field name="partner_id" string="Person"/>
+                    <field name="hobby_id"/>
+                    <field name="schedule_summary"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- partner_hobby search view -->
+        <record id="hobbies_organizer.search_partner_hobby" model="ir.ui.view">
+            <field name="name">Partner Hobby Search</field>
+            <field name="model">hobbies_organizer.partner_hobby</field>
+            <field name="arch" type="xml">
+                <search string="Activities Search">
+                    <field name="partner_id"/>
+                    <field name="hobby_id"/>
+                    <field name="hobby_category_id"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- partner_hobby window actions -->
+        <!-- we specify which list view we need to open as well as the grouping column -->
+        <record id="hobbies_organizer.act_window_partner_hobby_group_hobby" model="ir.actions.act_window">
+            <field name="name">Group by Hobby</field>
+            <field name="res_model">hobbies_organizer.partner_hobby</field>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="hobbies_organizer.list_partner_hobby_group_hobby"/>
+            <field name="context">{"group_by": ["hobby_id"]}</field>
+        </record>
+
+        <record id="hobbies_organizer.act_window_partner_hobby_group_person" model="ir.actions.act_window">
+            <field name="name">Group by Person</field>
+            <field name="res_model">hobbies_organizer.partner_hobby</field>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="hobbies_organizer.list_partner_hobby_group_person"/>
+            <field name="context">{"group_by": ["partner_id"]}</field>
+        </record>
+
+        <record id="hobbies_organizer.act_window_partner_hobby_group_category" model="ir.actions.act_window">
+            <field name="name">Group by Category</field>
+            <field name="res_model">hobbies_organizer.partner_hobby</field>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="hobbies_organizer.list_partner_hobby_group_category"/>
+            <field name="context">{"group_by": ["hobby_category_id"]}</field>
+        </record>
+
+        <!--<record id="hobbies_organizer.act_window_partner_hobby" model="ir.actions.act_window">
+            <field name="name">Hobby Reportings</field>
+            <field name="res_model">hobbies_organizer.partner_hobby</field>
+            <field name="view_mode">list</field>
+        </record>-->
+    </data>
+</odoo>

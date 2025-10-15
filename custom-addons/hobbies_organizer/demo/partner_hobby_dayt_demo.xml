@@ -1,0 +1,145 @@
+<!--
+Demo data, only loaded when odoo's db is in Load Demo Data mode.
+Intended to fill in some irrelevant data in db for showcase.
+-->
+
+<!-- partner_hobby_dayt -->
+<odoo>
+    <data>
+        <!-- John Doe sample schedule -->
+        <record id="dayt_john_chess_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_john_1"/>
+            <field name="day">tu</field>
+            <field name="time_start">18.0</field>
+            <field name="time_end">20.0</field>
+        </record>
+        <record id="dayt_john_chess_2" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_john_1"/>
+            <field name="day">th</field>
+            <field name="time_start">18.0</field>
+            <field name="time_end">21.0</field>
+        </record>
+        <record id="dayt_john_chess_3" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_john_1"/>
+            <field name="day">su</field>
+            <field name="time_start">16.50</field>
+            <field name="time_end">19.0</field>
+        </record>
+        <record id="dayt_john_football_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_john_2"/>
+            <field name="day">th</field>
+            <field name="time_start">10.0</field>
+            <field name="time_end">12.0</field>
+        </record>
+        <record id="dayt_john_carpentry_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_john_3"/>
+            <field name="day">sa</field>
+            <field name="time_start">15.0</field>
+            <field name="time_end">17.5</field>
+        </record>
+
+        <!-- Jane Smith -->
+        <record id="dayt_jane_painting_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_jane_1"/>
+            <field name="day">mo</field>
+            <field name="time_start">9.0</field>
+            <field name="time_end">11.5</field>
+        </record>
+        <record id="dayt_jane_music_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_jane_2"/>
+            <field name="day">we</field>
+            <field name="time_start">17.0</field>
+            <field name="time_end">19.0</field>
+        </record>
+        <record id="dayt_jane_tennis_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_jane_3"/>
+            <field name="day">fr</field>
+            <field name="time_start">14.0</field>
+            <field name="time_end">16.0</field>
+        </record>
+        <record id="dayt_jane_tennis_2" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_jane_3"/>
+            <field name="day">tu</field>
+            <field name="time_start">15.0</field>
+            <field name="time_end">17.50</field>
+        </record>
+
+        <!-- Carlos Mendez -->
+        <record id="dayt_carlos_football_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_carlos_1"/>
+            <field name="day">mo</field>
+            <field name="time_start">18.5</field>
+            <field name="time_end">20.5</field>
+        </record>
+        <record id="dayt_carlos_carpentry_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_carlos_2"/>
+            <field name="day">sa</field>
+            <field name="time_start">16.0</field>
+            <field name="time_end">18.0</field>
+        </record>
+        <record id="dayt_carlos_swimming_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_carlos_3"/>
+            <field name="day">we</field>
+            <field name="time_start">8.0</field>
+            <field name="time_end">10.0</field>
+        </record>
+        <record id="dayt_carlos_swimming_2" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_carlos_3"/>
+            <field name="day">su</field>
+            <field name="time_start">8.0</field>
+            <field name="time_end">10.0</field>
+        </record>
+        <record id="dayt_carlos_reading_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_carlos_4"/>
+            <field name="day">su</field>
+            <field name="time_start">15.25</field>
+            <field name="time_end">18.5</field>
+        </record>
+
+        <!-- Anna Keller -->
+        <record id="dayt_anna_painting_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_anna_1"/>
+            <field name="day">tu</field>
+            <field name="time_start">10.0</field>
+            <field name="time_end">12.0</field>
+        </record>
+        <record id="dayt_anna_painting_2" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_anna_1"/>
+            <field name="day">sa</field>
+            <field name="time_start">18.50</field>
+            <field name="time_end">21.0</field>
+        </record>
+        <record id="dayt_anna_music_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_anna_2"/>
+            <field name="day">fr</field>
+            <field name="time_start">19.0</field>
+            <field name="time_end">21.0</field>
+        </record>
+
+        <!-- Li Wei -->
+        <record id="dayt_li_programming_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_li_1"/>
+            <field name="day">mo</field>
+            <field name="time_start">9.0</field>
+            <field name="time_end">11.5</field>
+        </record>
+        <record id="dayt_li_programming_2" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_li_1"/>
+            <field name="day">th</field>
+            <field name="time_start">9.0</field>
+            <field name="time_end">11.5</field>
+        </record>
+        <record id="dayt_li_math_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_li_2"/>
+            <field name="day">we</field>
+            <field name="time_start">15.0</field>
+            <field name="time_end">17.0</field>
+        </record>
+        <record id="dayt_li_carpentry_1" model="hobbies_organizer.partner_hobby_dayt">
+            <field name="partner_hobby_id" ref="partner_hobby_li_3"/>
+            <field name="day">sa</field>
+            <field name="time_start">8.5</field>
+            <field name="time_end">11.0</field>
+        </record>
+    </data>
+</odoo>

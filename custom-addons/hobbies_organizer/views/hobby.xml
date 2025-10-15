@@ -1,0 +1,67 @@
+<!-- hobby views and actions -->
+<odoo>
+    <data>
+        <!-- hobby search view (this one is rendered above other views, e.g. list and calendar ones) -->
+        <record id="hobbies_organizer.search_hobby" model="ir.ui.view">
+            <field name="name">Hobbies Search</field>
+            <field name="model">hobbies_organizer.hobby</field>
+            <field name="arch" type="xml">
+                <search string="Hobby Search">
+                    <!-- fields in search views allows us to filter on the model's fields by typing in the search bar -->
+                    <field name="name"/>
+                    <field name="category_id"/>
+                    <!-- this is a predefined filter, used as a group_by (because of the context) -->
+                    <filter string="Hobby Category" name="hobby_category" context="{'group_by':'category_id'}"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- hobby list -->
+        <record id="hobbies_organizer.list_hobby" model="ir.ui.view">
+            <field name="name">Hobbies List</field>
+            <field name="model">hobbies_organizer.hobby</field>
+            <field name="arch" type="xml">
+                <list string="Hobby List">
+                    <field name="name"/>
+                    <field name="category_display" placeholder="No category"/>
+                    <field name="description_display" placeholder="No description"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- hobby form -->
+        <record id="hobbies_organizer.form_hobby" model="ir.ui.view">
+            <field name="name">Hobbies Form</field>
+            <field name="model">hobbies_organizer.hobby</field>
+            <field name="arch" type="xml">
+                <form string="Hobby Form">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>New Hobby</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" placeholder="Enter hobby name"/>
+                                <field name="category_id" options="{'no_create': False}" placeholder="Select hobby category"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Description">
+                                <field name="description" placeholder="Write a custom hobby description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- hobby window actions -->
+        <record id="hobbies_organizer.act_window_hobby" model="ir.actions.act_window">
+            <field name="name">All Hobbies</field>
+            <field name="res_model">hobbies_organizer.hobby</field>
+            <field name="view_mode">list,form,search</field>
+            <field name="context">{"in_hobbies_organizer":True}</field>
+        </record>
+    </data>
+</odoo>

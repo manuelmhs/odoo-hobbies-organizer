@@ -1,0 +1,52 @@
+<!-- hobby_type views and actions-->
+<odoo>
+    <data>
+        <!-- basic hobby_type list -->
+        <!-- external identifier and record's model (ir.ui.view for odoo views)-->
+        <record id="hobbies_organizer.list_hobby_type" model="ir.ui.view">
+            <field name="name">Categories List</field>
+            <!-- model the view is defined on. The view can access the fields and properties/methods of the given model-->
+            <field name="model">hobbies_organizer.hobby_type</field>
+            <!-- the proper definition of the view, e.g. a list-->
+            <field name="arch" type="xml">
+                <list string="Categories List">
+                    <!-- here we can access hobby_type fields, but cannot use dot notation (to access related fields)-->
+                    <field name="name"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- basic hobby_type form -->
+        <record id="hobbies_organizer.form_hobby_type" model="ir.ui.view">
+            <field name="name">Categories Form</field>
+            <field name="model">hobbies_organizer.hobby_type</field>
+            <field name="arch" type="xml">
+                <form string="Categories Form">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>New Category</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" placeholder="Enter hobby type (e.g. Sports)"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- hobby_type window actions -->
+        <!-- a window actions is usually triggered by a menu action and is used to display a view -->
+        <record id="hobbies_organizer.act_window_hobby_type" model="ir.actions.act_window">
+            <!-- name visualized on the frontend -->
+            <field name="name">All Categories</field>
+            <!-- model's name. The window action will trigger this model's views -->
+            <field name="res_model">hobbies_organizer.hobby_type</field>
+            <!-- type of views enabled, e.g. list and form -->
+            <field name="view_mode">list,form</field>
+            <!-- we can pass additional information in the odoo context (a python dict), e.g. a boolean -->
+            <field name="context">{"in_hobbies_organizer":True}</field>
+        </record>
+    </data>
+</odoo>

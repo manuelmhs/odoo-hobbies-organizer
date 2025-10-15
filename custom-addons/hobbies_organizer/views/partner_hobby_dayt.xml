@@ -1,0 +1,127 @@
+<!-- partner_hobby_dayt views and actions -->
+<odoo>
+    <data>
+        <!-- partner_hobby_dayt form, used when creating a new day-time entry inside a partner_hobby -->
+        <record id="hobbies_organizer.form_partner_hobby_dayt" model="ir.ui.view">
+            <field name="name">Schedule Form</field>
+            <field name="model">hobbies_organizer.partner_hobby_dayt</field>
+            <field name="arch" type="xml">
+                <form string="Schedule Form">
+                    <group>
+                        <field name="partner_hobby_id" invisible="1"/>
+                        <field name="day"/>
+                        <!-- float_time widget shows a float field as a proper time one (e.g. 17.5 -> 17:30) -->
+                        <field name="time_start" widget="float_time"/>
+                        <field name="time_end" widget="float_time"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- partner_hobby_dayt search view -->
+        <record id="hobbies_organizer.search_partner_hobby_dayt" model="ir.ui.view">
+            <field name="name">Partner Hobby DayTime Search</field>
+            <field name="model">hobbies_organizer.partner_hobby_dayt</field>
+            <field name="arch" type="xml">
+                <search string="Schedule Search">
+                    <field name="day"/>
+                    <field name="partner_id"/>
+                    <field name="hobby_id"/>
+                    <field name="hobby_category_id"/>
+                    
+                    <!-- in search views, we can use predefined filters and groupings, using domain and/or context -->
+                    <separator/>
+                    <filter name="weekdays" string="Weekdays" domain="[('day', 'in', ['mo','tu','we','th','fr'])]"/>
+                    <filter name="weekend" string="Weekend" domain="[('day', 'in', ['sa','su'])]"/>
+
+                    <separator/>
+                    <filter name="morning" string="Morning" domain="[('time_start', '>=', 6), ('time_start', '&lt;', 12)]"/>
+                    <filter name="afternoon" string="Afternoon" domain="[('time_start', '>=', 12), ('time_start', '&lt;', 18)]"/>
+                    <filter name="evening" string="Evening" domain="[('time_start', '>=', 18), ('time_start', '&lt;', 23.99)]"/>
+                    <filter name="dawn" string="Dawn" domain="[('time_start', '>=', 0), ('time_start', '&lt;', 6)]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- partner_hobby_dayt default list, used inside partner_hobby's form -->
+        <record id="hobbies_organizer.list_partner_hobby_dayt_default" model="ir.ui.view">
+            <field name="name">Schedule List</field>
+            <field name="model">hobbies_organizer.partner_hobby_dayt</field>
+            <field name="arch" type="xml">
+                <list string="Schedule List">
+                    <field name="day"/>
+                    <field name="time_start" widget="float_time"/>
+                    <field name="time_end" widget="float_time"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- partner_hobby_dayt list used when grouping by days -->
+        <record id="hobbies_organizer.list_partner_hobby_dayt_group_days" model="ir.ui.view">
+            <field name="name">Schedule List by Day</field>
+            <field name="model">hobbies_organizer.partner_hobby_dayt</field>
+            <field name="arch" type="xml">
+                <list string="Schedule by Day" create="false" edit="false" delete="false">
+                    <field name="partner_id"/>
+                    <field name="hobby_id"/>
+                    <field name="time_start" widget="float_time"/>
+                    <field name="time_end" widget="float_time"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- partner_hobby_dayt calendar view -->
+        <record id="hobbies_organizer.calendar_partner_hobby_dayt" model="ir.ui.view">
+            <field name="name">Calendar</field>
+            <field name="model">hobbies_organizer.partner_hobby_dayt</field>
+            <field name="arch" type="xml">
+                <!-- calendar views offer lots of parameters, e.g. date_start/stop are the fields used to a record in the calendar -->
+                <calendar string="Schedule" date_start="start_datetime" date_stop="stop_datetime" color="hobby_id"
+                show_date_picker="False" quick_create="False" create="False" edit="False" delete="False"
+                scales="week" mode="week" event_open_popup="True">
+                    <!-- we use our custom res.partner form when clicking on partner_id field -->
+                    <field name="partner_id" context="{'form_view_ref': 'hobbies_organizer.form_res_partner'}"/>
+                    <field name="hobby_id"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- partner_hobby_dayt window actions -->
+
+        <!-- to open the calendar -->
+        <record id="hobbies_organizer.act_window_partner_hobby_dayt" model="ir.actions.act_window">
+            <field name="name">Calendar</field>
+            <field name="res_model">hobbies_organizer.partner_hobby_dayt</field>
+            <field name="view_mode">calendar</field>
+        </record>
+        <!-- to open the the group_days list view -->
+        <record id="hobbies_organizer.act_window_partner_hobby_dayt_group_day" model="ir.actions.act_window">
+            <field name="name">Group by Day</field>
+            <field name="res_model">hobbies_organizer.partner_hobby_dayt</field>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="hobbies_organizer.list_partner_hobby_dayt_group_days"/>
+            <field name="context">{"group_by": ["day"]}</field>
+        </record>
+
+        <!-- partner_hobby_dayt server actions -->
+        <!-- a server actions goes into ir.actions.server odoo's model -->
+        <record id="hobbies_organizer.server_recompute_open_calendar" model="ir.actions.server">
+            <field name="name">Calendar</field>
+            <!-- uses model_id with ref instead of res_model-->
+            <field name="model_id" ref="model_hobbies_organizer_partner_hobby_dayt"/>
+            <!-- state allows us to define different server actions, in this case, execute python code -->
+            <field name="state">code</field>
+            <!-- the python code definition itself -->
+            <field name="code">
+<!-- we first recompute all partner_hobby_dayt's start/stop_datetime entries (not very efficient) -->
+env['hobbies_organizer.partner_hobby_dayt'].search([])._compute_start_stop_datetime()
+
+<!-- we then execute the action window that opens the calendar, passing the current context to it -->
+action = env.ref('hobbies_organizer.act_window_partner_hobby_dayt').read()[0]
+action["context"] = env.context
+
+action
+            </field>
+        </record>
+    </data>
+</odoo>

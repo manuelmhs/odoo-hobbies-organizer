@@ -1,0 +1,111 @@
+<!--
+Basic data, always loaded when the module is installed.
+These are example hobbies and hobby types.
+-->
+<odoo>
+    <data>
+        <!-- hobby_type -->
+        <!-- a data record contains an id (used as external reference), model, and all model's desired fields as children -->
+        <record id="hobby_type_intellectual" model="hobbies_organizer.hobby_type">
+            <field name="name">Intellectual</field>
+        </record>
+
+        <record id="hobby_type_physical" model="hobbies_organizer.hobby_type">
+            <field name="name">Physical</field>
+        </record>
+
+        <record id="hobby_type_artistic" model="hobbies_organizer.hobby_type">
+            <field name="name">Artistic</field>
+        </record>
+
+        <record id="hobby_type_manual" model="hobbies_organizer.hobby_type">
+            <field name="name">Manual</field>
+        </record>
+
+        <!-- hobby -->
+        <record id="hobby_football" model="hobbies_organizer.hobby">
+            <field name="name">Football</field>
+            <!-- here we reference the xmlid of the above hobby types, for the Many2one category_id field -->
+            <field name="category_id" ref="hobby_type_physical"/>
+            <field name="description">Team sport focused on coordination and endurance.</field>
+        </record>
+
+        <record id="hobby_tennis" model="hobbies_organizer.hobby">
+            <field name="name">Tennis</field>
+            <field name="category_id" ref="hobby_type_physical"/>
+            <field name="description">Racket sport played individually or in pairs, promotes agility and reflexes.</field>
+        </record>
+
+        <record id="hobby_swimming" model="hobbies_organizer.hobby">
+            <field name="name">Swimming</field>
+            <field name="category_id" ref="hobby_type_physical"/>
+            <field name="description">Full-body exercise that improves stamina and breathing.</field>
+        </record>
+
+        <record id="hobby_handball" model="hobbies_organizer.hobby">
+            <field name="name">Handball</field>
+            <field name="category_id" ref="hobby_type_physical"/>
+            <field name="description">Fast-paced team sport that combines strength and coordination.</field>
+        </record>
+
+        <record id="hobby_volleyball" model="hobbies_organizer.hobby">
+            <field name="name">Volleyball</field>
+            <field name="category_id" ref="hobby_type_physical"/>
+            <field name="description">Team sport emphasizing teamwork, reflexes, and balance.</field>
+        </record>
+
+        <record id="hobby_chess" model="hobbies_organizer.hobby">
+            <field name="name">Chess</field>
+            <field name="category_id" ref="hobby_type_intellectual"/>
+            <field name="description">Strategic board game that develops concentration and logic.</field>
+        </record>
+
+        <record id="hobby_competitive_programming" model="hobbies_organizer.hobby">
+            <field name="name">Competitive Programming</field>
+            <field name="category_id" ref="hobby_type_intellectual"/>
+            <field name="description">Solving algorithmic problems efficiently using code.</field>
+        </record>
+
+        <record id="hobby_recreational_math" model="hobbies_organizer.hobby">
+            <field name="name">Recreational Mathematics</field>
+            <field name="category_id" ref="hobby_type_intellectual"/>
+            <field name="description">Enjoying math puzzles, patterns, and logical curiosities.</field>
+        </record>
+
+        <record id="hobby_reading" model="hobbies_organizer.hobby">
+            <field name="name">Reading</field>
+            <field name="category_id" ref="hobby_type_intellectual"/>
+            <field name="description">Exploring stories and ideas through books and articles.</field>
+        </record>
+
+        <record id="hobby_painting" model="hobbies_organizer.hobby">
+            <field name="name">Painting</field>
+            <field name="category_id" ref="hobby_type_artistic"/>
+            <field name="description">Creative activity using colors to express ideas visually.</field>
+        </record>
+
+        <record id="hobby_music" model="hobbies_organizer.hobby">
+            <field name="name">Music</field>
+            <field name="category_id" ref="hobby_type_artistic"/>
+            <field name="description">Performing or composing melodies and rhythms.</field>
+        </record>
+
+        <record id="hobby_carpentry" model="hobbies_organizer.hobby">
+            <field name="name">Carpentry</field>
+            <field name="category_id" ref="hobby_type_manual"/>
+            <field name="description">Crafting wooden objects using tools and precision skills.</field>
+        </record>
+
+        <record id="hobby_pottery" model="hobbies_organizer.hobby">
+            <field name="name">Pottery</field>
+            <field name="category_id" ref="hobby_type_manual"/>
+            <field name="description">Creating artistic and functional pieces from clay.</field>
+        </record>
+
+        <record id="hobby_gardening" model="hobbies_organizer.hobby">
+            <field name="name">Gardening</field>
+            <field name="category_id" ref="hobby_type_manual"/>
+            <field name="description">Cultivating plants and flowers for decoration or food.</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,30 @@
+<!-- All the hobbies_organizer module's menus-->
+<!-- odoo's menus are defined in 3 levels: root menus, first level menus, and action menus -->
+<odoo>
+    <data>
+        <!-- root menu, displayed in odoo to access our app -->
+        <menuitem id="hobbies_organizer.menu_root" name="Hobbies Organizer">
+            <!-- first level menus, displayed in the top bar inside our app, used to organize and group the action menus -->
+            <!-- People menu -->
+            <menuitem id="hobbies_organizer.first_level_menu_res_partner" name="People">
+                <!-- action menus, displayed as a drop-down inside a first level menu. Triggers a specific action -->
+                <menuitem id="hobbies_organizer.menu_action_res_partner" name="All People" action="hobbies_organizer.act_window_res_partner"/>
+                <!-- in this case we use a server action instead of a window action. This is useful to run logic server side for CRUD, execute python or business logic. -->
+                <menuitem id="hobbies_organizer.menu_action_partner_hobby_dayt_calendar" name="Calendar" action="hobbies_organizer.server_recompute_open_calendar"/>
+            </menuitem>
+            <!-- Hobbies menu -->
+            <menuitem id="hobbies_organizer.first_level_menu_hobby" name="Hobbies">
+                <menuitem id="hobbies_organizer.menu_action_hobby" name="All Hobbies" action="hobbies_organizer.act_window_hobby"/>
+                <menuitem id="hobbies_organizer.menu_action_hobby_type" name="Categories" action="hobbies_organizer.act_window_hobby_type"/>
+            </menuitem>
+            <!-- Reportings menu-->
+            <menuitem id="hobbies_organizer.first_level_menu_partner_hobby" name="Reportings">
+                <!-- Specific views that uses differents base filters/groupings and xml view definition -->
+                <menuitem id ="hobbies_organizer.menu_action_partner_hobby_group_person" name="Group by Person" action="hobbies_organizer.act_window_partner_hobby_group_person"/>
+                <menuitem id="hobbies_organizer.menu_action_partner_hobby_group_hobby" name="Group by Hobby" action="hobbies_organizer.act_window_partner_hobby_group_hobby"/>
+                <menuitem id="hobbies_organizer.menu_action_partner_hobby_group_category" name="Group by Category" action="hobbies_organizer.act_window_partner_hobby_group_category"/>
+                <menuitem id="hobbies_organizer.menu_action_partner_hobby_dayt_group_day" name="Group by Day" action="hobbies_organizer.act_window_partner_hobby_dayt_group_day"/>
+            </menuitem>
+        </menuitem>
+    </data>
+</odoo>

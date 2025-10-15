@@ -1,28 +1,32 @@
 services:
+  # odoo 19 service
   web:
     image: odoo:19.0
     depends_on:
       - db
     ports:
+      # odoo listens on port 8069 by default, this will allow us to access odoo on localhost:8069
       - "8069:8069"
     volumes:
+      # named volume for odoo information
       - odoo-data:/var/lib/odoo
+      # bind mounts for our custom addon and odoo config
       - ./custom-addons:/mnt/extra-addons
-    environment:
-      - HOST=db
-      - USER=odoo
-      - PASSWORD=odoo
-      - ADDONS_PATH=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons
+      - ./config/odoo.conf:/etc/odoo/odoo.conf
 
+  # postgres 15 service
   db:
     image: postgres:15
     environment:
-      - POSTGRES_DB=odoo19_test
+      # the db and user/pass odoo will use
+      - POSTGRES_DB=hobbies_db
       - POSTGRES_USER=odoo
       - POSTGRES_PASSWORD=odoo
     volumes:
+      # volume for postgres db
       - postgres-data:/var/lib/postgresql/data
 
+# Named volumes for the db and odoo data
 volumes:
   postgres-data: {}
   odoo-data: {}

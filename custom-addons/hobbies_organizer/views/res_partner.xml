@@ -1,0 +1,113 @@
+<!-- res.partner custom views and actions. Made from scratch to override the default ones -->
+<odoo>
+    <data>
+        <!-- res.partner list view -->
+        <record id="hobbies_organizer.list_res_partner" model="ir.ui.view">
+            <field name="name">People List</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <list string="People List">
+                    <field name="name"/>
+                    <field name="country_id"/>
+                    <field name="city"/>
+                    <!-- computed field, only to show in the view -->
+                    <field name="hobbies_summary"/>
+                </list>
+            </field>
+        </record>
+        
+        <!-- res.partner form view -->
+        <record id="hobbies_organizer.form_res_partner" model="ir.ui.view">
+            <field name="name">People Form</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form string="People Form">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>New Person</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="country_id"/>
+                                <field name="city"/>
+                            </group>
+                            <group>
+                                <field name="email"/>
+                                <field name="phone"/>
+                                <field name="street"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Hobbies">
+                                <!-- in this case, because partner_hobby contains multiple list definitions, we need to specify which one we
+                                want to open. If not, the first one odoo finds will be opened. -->
+                                <field name="hobby_ids" context="{'list_view_ref':'hobbies_organizer.list_partner_hobby_default'}"/>
+                                <!-- and here, we use a server action instead of a window action, to recompute the partners schedule before
+                                opening the calendar. We do the same thing in the menu that opens the calendar.
+                                A button's name and type specifies the action to execute (in this case, a server action, could be e.g. a model's method),
+                                we also pass in the context the current partner id as default filter to the calendar view. -->
+                                <button name="hobbies_organizer.server_recompute_open_calendar"
+                                    string="Open Calendar"
+                                    type="action"
+                                    class="btn-primary"
+                                    context="{'search_default_partner_id': id}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- res.partner search view -->
+        <record id="hobbies_organizer.search_res_partner" model="ir.ui.view">
+            <field name="name">People Search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search string="People Search">
+                    <field name="name"/>
+                    <field name="country_id"/>
+                    <field name="city"/>
+
+                    <field name="hobby_names"/>
+                    <field name="hobby_categories"/>
+                </search>
+            </field>
+        </record>
+        
+        <!-- res.partner window action. We use both context and domain to show and create partners inside our app. -->
+        <record id="hobbies_organizer.act_window_res_partner" model="ir.actions.act_window">
+            <field name="name">All People</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">list,form</field>
+            <!-- the context will be used inside res.partner's model, to set a boolean field and identify a new record as part of our app -->
+            <field name="context">{"in_hobbies_organizer":True}</field>
+            <!-- the domain will be the base filter that records have to pass to show in the list -->
+            <field name="domain">[("in_hobbies_organizer","=",True)]</field>
+        </record>
+
+        <!-- because we are using different views for res.partner than the ones that come with odoo, we need to specify that our window action
+        must open the ones that we defined, instead of the original ones. This also happen if we define multiple lists, for example. -->
+        <!-- force list view -->
+        <!-- this record corresponds to ir.actions.act_window.view's odoo model-->
+        <record id="hobbies_organizer.act_window_res_partner_list_view" model="ir.actions.act_window.view">
+            <!-- contains sequence (order inside the window action)-->
+            <field name="sequence" eval="1"/>
+            <!-- type of view -->
+            <field name="view_mode">list</field>
+            <!-- the xmlid of the specific view we wish to open -->
+            <field name="view_id" ref="hobbies_organizer.list_res_partner"/>
+            <!-- and the window action's xmlid -->
+            <field name="act_window_id" ref="hobbies_organizer.act_window_res_partner"/>
+        </record>
+
+        <!-- force form view -->
+        <record id="hobbies_organizer.act_window_res_partner_form_view" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hobbies_organizer.form_res_partner"/>
+            <field name="act_window_id" ref="hobbies_organizer.act_window_res_partner"/>
+        </record>
+    </data>
+</odoo>

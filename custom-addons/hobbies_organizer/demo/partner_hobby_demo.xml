@@ -1,0 +1,74 @@
+<!-- partner_hobby -->
+<odoo>
+    <data>
+        <!-- John Doe sample hobbies -->
+        <record id="partner_hobby_john_1" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_john_doe"/>
+            <field name="hobby_id" ref="hobby_chess"/>
+        </record>
+        <record id="partner_hobby_john_2" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_john_doe"/>
+            <field name="hobby_id" ref="hobby_football"/>
+        </record>
+        <record id="partner_hobby_john_3" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_john_doe"/>
+            <field name="hobby_id" ref="hobby_carpentry"/>
+        </record>
+
+        <!-- Jane Smith -->
+        <record id="partner_hobby_jane_1" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_jane_smith"/>
+            <field name="hobby_id" ref="hobby_painting"/>
+        </record>
+        <record id="partner_hobby_jane_2" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_jane_smith"/>
+            <field name="hobby_id" ref="hobby_music"/>
+        </record>
+        <record id="partner_hobby_jane_3" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_jane_smith"/>
+            <field name="hobby_id" ref="hobby_tennis"/>
+        </record>
+
+        <!-- Carlos Mendez -->
+        <record id="partner_hobby_carlos_1" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_carlos_mendez"/>
+            <field name="hobby_id" ref="hobby_football"/>
+        </record>
+        <record id="partner_hobby_carlos_2" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_carlos_mendez"/>
+            <field name="hobby_id" ref="hobby_carpentry"/>
+        </record>
+        <record id="partner_hobby_carlos_3" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_carlos_mendez"/>
+            <field name="hobby_id" ref="hobby_swimming"/>
+        </record>
+        <record id="partner_hobby_carlos_4" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_carlos_mendez"/>
+            <field name="hobby_id" ref="hobby_reading"/>
+        </record>
+
+        <!-- Anna Keller -->
+        <record id="partner_hobby_anna_1" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_anna_keller"/>
+            <field name="hobby_id" ref="hobby_painting"/>
+        </record>
+        <record id="partner_hobby_anna_2" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_anna_keller"/>
+            <field name="hobby_id" ref="hobby_music"/>
+        </record>
+
+        <!-- Li Wei -->
+        <record id="partner_hobby_li_1" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_li_wei"/>
+            <field name="hobby_id" ref="hobby_competitive_programming"/>
+        </record>
+        <record id="partner_hobby_li_2" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_li_wei"/>
+            <field name="hobby_id" ref="hobby_recreational_math"/>
+        </record>
+        <record id="partner_hobby_li_3" model="hobbies_organizer.partner_hobby">
+            <field name="partner_id" ref="partner_li_wei"/>
+            <field name="hobby_id" ref="hobby_carpentry"/>
+        </record>
+    </data>
+</odoo>
